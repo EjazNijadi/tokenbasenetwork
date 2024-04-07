@@ -473,7 +473,7 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
     ) external;
 }
  
-contract projectname is ERC20, Ownable {
+contract PETTYCOIN is ERC20, Ownable {
     using SafeMath for uint256;
 
     IUniswapV2Router02 public immutable router;
@@ -565,26 +565,26 @@ contract projectname is ERC20, Ownable {
         marketPair[address(uniswapV2Pair)] = true;
 
         approve(address(router), type(uint256).max);
-        uint256 totalSupply = 1e6 * 1e18;
+        uint256 totalSupply = 1e6 * 1e9;
 
         maxBuyAmount = totalSupply * 4 / 100; // 4% maxTransactionAmountTxn
-        maxSellAmount = totalSupply * 4 / 100; // 4% maxTransactionAmountTxn
+        maxSellAmount = totalSupply * 2 / 100; // 2% maxTransactionAmountTxn
         maxWalletAmount = totalSupply * 4 / 100; // 4% maxWallet
-        thresholdSwapAmount = totalSupply * 4 / 10000; 
+        thresholdSwapAmount = totalSupply * 9 / 100; 
 
         _fees.buyMarketingFee = 7;
         _fees.buyLiquidityFee = 3;
-        _fees.buyDevFee = 0;
+        _fees.buyDevFee = 7;
         _fees.buyTotalFees = _fees.buyMarketingFee + _fees.buyLiquidityFee + _fees.buyDevFee;
 
         _fees.sellMarketingFee = 12;
         _fees.sellLiquidityFee = 3;
-        _fees.sellDevFee = 0;
+        _fees.sellDevFee = 7;
         _fees.sellTotalFees = _fees.sellMarketingFee + _fees.sellLiquidityFee + _fees.sellDevFee;
 
 
-        marketingWallet = address(0xa06Be18a0768b3F8f5e6f6B3369C764e69a9F8C4);
-        devWallet = address(0xa06Be18a0768b3F8f5e6f6B3369C764e69a9F8C4);
+        marketingWallet = address(0x35ea6d20E3bA674587fe937B9cc11eE8CfE01e59);
+        devWallet = address(0x01853AeF139ac035C7938F5D3fac93d1c98568c1);
 
         // exclude from paying fees or having max transaction amount
 
@@ -638,8 +638,8 @@ contract projectname is ERC20, Ownable {
         _fees.sellLiquidityFee = _liquidityFeeSell;
         _fees.sellDevFee = _devFeeSell;
         _fees.sellTotalFees = _fees.sellMarketingFee + _fees.sellLiquidityFee + _fees.sellDevFee;
-        require(_fees.buyTotalFees <= 10, "Must keep fees at 30% or less");   
-        require(_fees.sellTotalFees <= 10, "Must keep fees at 30% or less");
+        require(_fees.buyTotalFees <= 15, "Must keep fees at 30% or less");   
+        require(_fees.sellTotalFees <= 15, "Must keep fees at 30% or less");
      
     }
     
